@@ -19,15 +19,15 @@ jobs:
         uses: docker/login-action@v2
         with:
           registry: ghcr.io
-          username: "thisisfeeder"
-          password: ${{ secrets.GHCIO }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build:dockerimage
         uses: docker/build-push-action@v3
         with:
           registry: ghcr.io
-          username: "thisisfeeder"
-          password: ${{ secrets.GHCIO }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
           repository: mbanq/moov-wire
           tags: ${{ env.IMAGE_VERSION }}
           build-args: |
