@@ -13,23 +13,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Build:checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v5
       
-      - name: Login:ghcr.io
-        uses: docker/login-action@v2
+      - name: Login to github container registry
+        uses: docker/login-action@v3
         with:
           registry: ghcr.io
           username: "thisisfeeder"
           password: ${{ secrets.GHCIO }}
 
       - name: Build:dockerimage
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v6
         with:
-          registry: ghcr.io
-          username: "thisisfeeder"
-          password: ${{ secrets.GHCIO }}
-          repository: mbanq/moov-wire
-          tags: ${{ env.IMAGE_VERSION }}
+          context: .
+          tags: mbanq/moov-wire:${{ env.IMAGE_VERSION }}
           push: true
           build-args: |
             "MOOV_WIRE_VERSION=${{ env.IMAGE_VERSION }}"
