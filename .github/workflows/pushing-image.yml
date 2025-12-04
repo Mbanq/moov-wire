@@ -5,7 +5,7 @@ on:
     branches:
     - main
 env:
-  IMAGE_VERSION: "v0.15.5"
+  IMAGE_VERSION: v0.15.5
 
 jobs:
   build:
@@ -15,7 +15,7 @@ jobs:
       - name: Build:checkout
         uses: actions/checkout@v2
       - name: Build:dockerimage
-        uses: docker/build-push-action@v1
+        uses: docker/build-push-action@v3
         with:
           registry: ghcr.io
           username: "thisisfeeder"
@@ -23,4 +23,4 @@ jobs:
           repository: mbanq/moov-wire
           tags: ${{ env.IMAGE_VERSION }}
           build-args: |
-            MOOV_WIRE_VERSION=${{ env.IMAGE_VERSION }}
+            "MOOV_WIRE_VERSION=${{ env.IMAGE_VERSION }}"
