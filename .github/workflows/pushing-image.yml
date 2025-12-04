@@ -32,3 +32,7 @@ jobs:
           tags: ${{ env.IMAGE_VERSION }}
           build-args: |
             "MOOV_WIRE_VERSION=${{ env.IMAGE_VERSION }}"
+      
+      - name: Verify:image
+        run: |
+          docker run --rm ghcr.io/mbanq/moov-wire:${{ env.IMAGE_VERSION }} /moov/wire --version
