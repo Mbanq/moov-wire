@@ -30,6 +30,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
           repository: mbanq/moov-wire
           tags: ${{ env.IMAGE_VERSION }}
+          push: true
           build-args: |
             "MOOV_WIRE_VERSION=${{ env.IMAGE_VERSION }}"
 
