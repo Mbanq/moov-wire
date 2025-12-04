@@ -1,5 +1,5 @@
-ARG MOOV_WIRE_VERSION=
+ARG MOOV_WIRE_VERSION
 
-FROM moov/wire:${MOOV_WIRE_VERSION:-latest}
+FROM moov/wire:${MOOV_WIRE_VERSION}
 
 LABEL maintainer="Mbanq dev@mbanq.com"
