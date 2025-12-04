@@ -4,6 +4,8 @@ on:
   push:
     branches:
     - main
+env:
+  IMAGE_VERSION: v0.15.5
 
 jobs:
   build:
@@ -16,7 +18,9 @@ jobs:
         uses: docker/build-push-action@v1
         with:
           registry: ghcr.io
-          username: "ThisIsFeeder"
+          username: "thisisfeeder"
           password: ${{ secrets.GHCIO }}
-          repository: mbanq/moov-wire
-          tags: latest
+          repository: mbanq/watchman
+          tags: ${{ env.IMAGE_VERSION }}
+          build-args: |
+            MOOV_WIRE_VERSION=${{ env.IMAGE_VERSION }}
